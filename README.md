@@ -40,7 +40,7 @@ python mteb_eval.py --model_name_or_path <path_to_trained_model>
 The evaluation results will be saved into the `./eval/mteb_results/` directory.
 
 ## Model Usage
-You can use them with:
+You can use the models with:
 ```
 import torch
 from torch import Tensor
