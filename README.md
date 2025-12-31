@@ -19,6 +19,27 @@ pip install flash-attn --no-build-isolation
 |LENS-d4000  | [yibinlei/LENS-d4000](https://huggingface.co/yibinlei/LENS-d4000) | 
 |LENS-d8000 | [yibinlei/LENS-d8000](https://huggingface.co/yibinlei/LENS-d8000) | 
 
+## Training
+We provide detailed training scripts to reproduce our model in the `./finetune` directory. 
+Simply run the training with
+```
+cd ./finetune
+bash train.sh
+```
+You can modify the parameters defined in the `./finetune/train.sh` script to control the training process.
+
+The final model will be saved into the `./finetune/trained_models/` directory.
+
+## Evaluation
+We provide the evaluation scripts to evaluate the model on MTEB datasets in the `./eval` directory.
+Simply run the evaluation with
+```
+cd ./eval
+python mteb_eval.py --model_name_or_path <path_to_trained_model>
+```
+The evaluation results will be saved into the `./eval/mteb_results/` directory.
+
+## Model Usage
 You can use them with:
 ```
 import torch
@@ -92,23 +113,3 @@ doc_embeddings = F.normalize(doc_embeddings, p=2, dim=1)
 # Compute the similarity
 similarity = torch.matmul(query_embeddings, doc_embeddings.T)
 ```
-
-## Training
-We provide detailed training scripts to reproduce our model in the `./finetune` directory. 
-Simply run the training with
-```
-cd ./finetune
-bash train.sh
-```
-You can modify the parameters defined in the `./finetune/train.sh` script to control the training process.
-
-The final model will be saved into the `./finetune/trained_models/` directory.
-
-## Evaluation
-We provide the evaluation scripts to evaluate the model on MTEB datasets in the `./eval` directory.
-Simply run the evaluation with
-```
-cd ./eval
-python mteb_eval.py --model_name_or_path <path_to_trained_model>
-```
-The evaluation results will be saved into the `./eval/mteb_results/` directory.
